@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.apiscanner.model.JwtScanResult;
+import com.example.apiscanner.model.OwaspScanResult;
 import com.example.apiscanner.model.ScanResult;
 import com.example.apiscanner.model.SwaggerScanResult;
 import com.example.apiscanner.service.JwtScanService;
+import com.example.apiscanner.service.OwaspScanService;
 import com.example.apiscanner.service.PdfService;
 import com.example.apiscanner.service.ScanService;
 import com.example.apiscanner.service.SwaggerScanService;
@@ -59,6 +61,15 @@ public class ScanController {
 	public JwtScanResult scanJwt(@RequestParam String token) {
 
 		return jwtScanService.scanJwt(token);
+	}
+
+	@Autowired
+	private OwaspScanService service;
+
+	@GetMapping("/owasp-scan")
+	public OwaspScanResult scanOwasp(@RequestParam String url) {
+
+		return service.scan(url);
 	}
 
 }

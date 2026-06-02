@@ -204,72 +204,6 @@ ${data.totalApis}
     }
 }
 
-function downloadApiPdf() {
-
-    const url =
-        document.getElementById("url").value;
-
-    if (!url) {
-
-        alert("Please enter a website URL");
-
-        return;
-    }
-
-    window.open(
-        `http://localhost:9090/download-pdf?url=${encodeURIComponent(url)}`,
-        "_blank"
-    );
-}
-
-function downloadSwaggerPdf() {
-
-    const url =
-        document.getElementById("swaggerUrl").value;
-
-    if (!url) {
-
-        alert("Please enter a Swagger URL");
-
-        return;
-    }
-
-    window.open(
-        `http://localhost:9090/download-swagger-pdf?url=${encodeURIComponent(url)}`,
-        "_blank"
-    );
-}
-
-function showJwtScanner() {
-
-    document.getElementById("apiScanner")
-        .style.display = "none";
-
-    document.getElementById("swaggerScanner")
-        .style.display = "none";
-
-    document.getElementById("jwtScanner")
-        .style.display = "block";
-
-    document.getElementById("apiTab")
-        .classList.remove("active");
-
-    document.getElementById("swaggerTab")
-        .classList.remove("active");
-
-    document.getElementById("jwtTab")
-        .classList.add("active");
-
-    document.getElementById("result")
-        .innerHTML = "";
-
-    document.getElementById("apiPdfBtn")
-        .style.display = "none";
-
-    document.getElementById("swaggerPdfBtn")
-        .style.display = "none";
-}
-
 //JWT Token scanner function
 async function scanJwt() {
 
@@ -317,3 +251,155 @@ async function scanJwt() {
         document.getElementById("loader").style.display = "none";
     }
 }
+// funtion method for scanOwasp
+async function scanOwasp() {
+
+    const url =
+        document.getElementById("owaspUrl").value;
+
+    const resultDiv =
+        document.getElementById("result");
+
+    try {
+
+        const response =
+            await fetch(
+                `http://localhost:9090/owasp-scan?url=${encodeURIComponent(url)}`
+            );
+
+        const data =
+            await response.json();
+
+        resultDiv.innerHTML = `
+
+        <h2>OWASP Top 10 Report</h2>
+
+        <div class="result-card">
+        <b>Broken Access Control:</b>
+        ${data.brokenAccessControl}
+        </div>
+
+        <div class="result-card">
+        <b>Cryptographic Failures:</b>
+        ${data.cryptographicFailures}
+        </div>
+
+        <div class="result-card">
+        <b>Injection Risk:</b>
+        ${data.injectionRisk}
+        </div>
+
+        <div class="result-card">
+        <b>Security Misconfiguration:</b>
+        ${data.securityMisconfiguration}
+        </div>
+
+        <div class="result-card">
+        <b>Overall Risk:</b>
+        ${data.overallRisk}
+        </div>
+
+        `;
+    }
+    catch (error) {
+
+        resultDiv.innerHTML =
+            "Error: " + error.message;
+    }
+}
+function downloadApiPdf() {
+
+    const url =
+        document.getElementById("url").value;
+
+    if (!url) {
+
+        alert("Please enter a website URL");
+
+        return;
+    }
+
+    window.open(
+        `http://localhost:9090/download-pdf?url=${encodeURIComponent(url)}`,
+        "_blank"
+    );
+}
+
+function downloadSwaggerPdf() {
+
+    const url =
+        document.getElementById("swaggerUrl").value;
+
+    if (!url) {
+
+        alert("Please enter a Swagger URL");
+
+        return;
+    }
+
+    window.open(
+        `http://localhost:9090/download-swagger-pdf?url=${encodeURIComponent(url)}`,
+        "_blank"
+    );
+}
+
+function showApiScanner() {
+
+    document.getElementById("apiScanner").style.display = "block";
+    document.getElementById("swaggerScanner").style.display = "none";
+    document.getElementById("jwtScanner").style.display = "none";
+    document.getElementById("owaspScanner").style.display = "none";
+
+    document.getElementById("apiTab").classList.add("active");
+    document.getElementById("swaggerTab").classList.remove("active");
+    document.getElementById("jwtTab").classList.remove("active");
+    document.getElementById("owaspTab").classList.remove("active");
+
+    document.getElementById("result").innerHTML = "";
+}
+
+function showSwaggerScanner() {
+
+    document.getElementById("apiScanner").style.display = "none";
+    document.getElementById("swaggerScanner").style.display = "block";
+    document.getElementById("jwtScanner").style.display = "none";
+    document.getElementById("owaspScanner").style.display = "none";
+
+    document.getElementById("apiTab").classList.remove("active");
+    document.getElementById("swaggerTab").classList.add("active");
+    document.getElementById("jwtTab").classList.remove("active");
+    document.getElementById("owaspTab").classList.remove("active");
+
+    document.getElementById("result").innerHTML = "";
+}
+
+function showJwtScanner() {
+
+    document.getElementById("apiScanner").style.display = "none";
+    document.getElementById("swaggerScanner").style.display = "none";
+    document.getElementById("jwtScanner").style.display = "block";
+    document.getElementById("owaspScanner").style.display = "none";
+
+    document.getElementById("apiTab").classList.remove("active");
+    document.getElementById("swaggerTab").classList.remove("active");
+    document.getElementById("jwtTab").classList.add("active");
+    document.getElementById("owaspTab").classList.remove("active");
+
+    document.getElementById("result").innerHTML = "";
+}
+
+function showOwaspScanner() {
+
+    document.getElementById("apiScanner").style.display = "none";
+    document.getElementById("swaggerScanner").style.display = "none";
+    document.getElementById("jwtScanner").style.display = "none";
+    document.getElementById("owaspScanner").style.display = "block";
+
+    document.getElementById("apiTab").classList.remove("active");
+    document.getElementById("swaggerTab").classList.remove("active");
+    document.getElementById("jwtTab").classList.remove("active");
+    document.getElementById("owaspTab").classList.add("active");
+
+    document.getElementById("result").innerHTML = "";
+}
+

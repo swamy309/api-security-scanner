@@ -51,6 +51,12 @@
 
                 </button>
 
+                <button id="owaspTab" class="tab-btn" onclick="showOwaspScanner()">
+
+                    OWASP Scanner
+
+                </button>
+
             </div>
 
             <!-- Header Scanner -->
@@ -97,6 +103,17 @@
 
                     Analyze JWT
 
+                </button>
+
+            </div>
+
+            <!-- owaspScanner -->
+            <div id="owaspScanner" style="display:none;">
+
+                <input type="text" id="owaspUrl" placeholder="Enter Website URL">
+
+                <button onclick="scanOwasp()">
+                    Scan OWASP
                 </button>
 
             </div>
