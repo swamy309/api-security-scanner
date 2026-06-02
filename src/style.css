@@ -1,0 +1,191 @@
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family: Arial;
+
+    background: #f4f7fb;
+}
+
+.main-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.scanner-card {
+
+    width: 600px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    color: #222;
+}
+
+.subtitle {
+
+    text-align: center;
+
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+}
+
+button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 20px;
+
+    background: #111827;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+
+    background: #000;
+}
+
+.loader {
+
+    border: 5px solid #eee;
+
+    border-top: 5px solid #111827;
+
+    border-radius: 50%;
+
+    width: 40px;
+
+    height: 40px;
+
+    animation: spin 1s linear infinite;
+
+    margin: 20px auto;
+
+    display: none;
+}
+
+@keyframes spin {
+
+    0% {
+
+        transform: rotate(0deg);
+    }
+
+    100% {
+
+        transform: rotate(360deg);
+    }
+}
+
+#result {
+
+    margin-top: 30px;
+}
+
+.result-card {
+
+    padding: 14px;
+
+    background: #f9fafb;
+
+    border-radius: 8px;
+
+    margin-top: 12px;
+
+    font-size: 16px;
+
+    border-left: 5px solid #111827;
+}
+footer {
+
+    text-align: center;
+    color: black;
+    font-weight: bold;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    color: black;
+
+    font-size: 14px;
+}
+.tabs {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+
+    flex: 1;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.active {
+
+    background-color: #007bff;
+
+    color: white;
+}
