@@ -6,8 +6,28 @@ async function scanApi() {
     const resultDiv =
         document.getElementById("result");
 
+    const errorDiv =
+        document.getElementById("urlError");
+
+    errorDiv.innerHTML = "";
+
+    if (!url) {
+
+        errorDiv.innerHTML =
+            "Please enter Website URL";
+
+        document.getElementById("url").style.border =
+            "2px solid #ef4444";
+
+        return;
+    }
+
+    // Validation passed
+    document.getElementById("url").style.border =
+        "1px solid #334155";
     const loader =
         document.getElementById("loader");
+
 
     // SHOW LOADER
 
@@ -118,6 +138,26 @@ async function scanSwagger() {
     const resultDiv =
         document.getElementById("result");
 
+    const errorDiv =
+        document.getElementById("swaggerError");
+
+    errorDiv.innerHTML = "";
+
+    if (!url) {
+        errorDiv.innerHTML =
+            "Please enter Swagger/OpenAPI URL";
+        document.getElementById("url").style.border =
+            "2px solid #ef4444";
+        return;
+    }
+
+    // Validation passed
+    document.getElementById("url").style.border =
+        "1px solid #334155";
+
+    document.getElementById("swaggerUrl")
+        .style.border =
+        "1px solid #334155";
     const loader =
         document.getElementById("loader");
 
@@ -210,10 +250,30 @@ async function scanJwt() {
     const token = document.getElementById("jwtToken").value.trim();
     const resultDiv = document.getElementById("result");
 
+    const errorDiv =
+        document.getElementById("jwtError");
+
+    errorDiv.innerHTML = "";
+
+
     if (!token) {
-        resultDiv.innerHTML = "<p style='color:red;'>Please enter JWT token</p>";
+
+        errorDiv.innerHTML =
+            "Please enter JWT Token";
+
+        document.getElementById("jwtToken").style.border =
+            "2px solid #ef4444";
+
         return;
     }
+
+    // Validation passed
+    document.getElementById("jwtToken").style.border =
+        "1px solid #334155";
+
+    document.getElementById("jwtToken")
+        .style.border =
+        "1px solid #334155";
 
     document.getElementById("loader").style.display = "block";
 
@@ -259,7 +319,30 @@ async function scanOwasp() {
 
     const resultDiv =
         document.getElementById("result");
+    const errorDiv =
+        document.getElementById("owaspError");
 
+    errorDiv.innerHTML = "";
+
+
+    if (!url) {
+
+        errorDiv.innerHTML =
+            "Please enter Website URL";
+
+        document.getElementById("url").style.border =
+            "2px solid #ef4444";
+
+        return;
+    }
+
+    // Validation passed
+    document.getElementById("url").style.border =
+        "1px solid #334155";
+
+    document.getElementById("owaspUrl")
+        .style.border =
+        "1px solid #334155";
     try {
 
         const response =
@@ -307,6 +390,8 @@ async function scanOwasp() {
             "Error: " + error.message;
     }
 }
+
+// downloadAPIPDF 
 function downloadApiPdf() {
 
     const url =
@@ -325,6 +410,7 @@ function downloadApiPdf() {
     );
 }
 
+//  downloadSwaggerPdf
 function downloadSwaggerPdf() {
 
     const url =
@@ -343,6 +429,8 @@ function downloadSwaggerPdf() {
     );
 }
 
+//showApiScanner
+
 function showApiScanner() {
 
     document.getElementById("apiScanner").style.display = "block";
@@ -358,6 +446,7 @@ function showApiScanner() {
     document.getElementById("result").innerHTML = "";
 }
 
+//showSwaggerScanner
 function showSwaggerScanner() {
 
     document.getElementById("apiScanner").style.display = "none";
@@ -372,6 +461,8 @@ function showSwaggerScanner() {
 
     document.getElementById("result").innerHTML = "";
 }
+
+//showJwtScanner
 
 function showJwtScanner() {
 
@@ -388,6 +479,8 @@ function showJwtScanner() {
     document.getElementById("result").innerHTML = "";
 }
 
+//showOwaspScanner
+
 function showOwaspScanner() {
 
     document.getElementById("apiScanner").style.display = "none";
@@ -402,4 +495,41 @@ function showOwaspScanner() {
 
     document.getElementById("result").innerHTML = "";
 }
+
+// resetScanner
+
+function resetScanner() {
+
+    document.getElementById("url").value = "";
+    document.getElementById("swaggerUrl").value = "";
+    document.getElementById("jwtToken").value = "";
+    document.getElementById("owaspUrl").value = "";
+
+    document.getElementById("result").innerHTML = "";
+
+    document.getElementById("apiPdfBtn").style.display = "none";
+    document.getElementById("swaggerPdfBtn").style.display = "none";
+
+    document.getElementById("urlError").innerHTML = "";
+    document.getElementById("swaggerError").innerHTML = "";
+    document.getElementById("jwtError").innerHTML = "";
+    document.getElementById("owaspError").innerHTML = "";
+
+    // Reset Borders
+    document.getElementById("url").style.border =
+        "1px solid #334155";
+
+    document.getElementById("swaggerUrl").style.border =
+        "1px solid #334155";
+
+    document.getElementById("jwtToken").style.border =
+        "1px solid #334155";
+
+    document.getElementById("owaspUrl").style.border =
+        "1px solid #334155";
+
+    showApiScanner();
+}
+
+
 

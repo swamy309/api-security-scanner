@@ -17,6 +17,18 @@
 
 <body>
 
+    <header class="header">
+
+        <div class="logo">
+            🛡 CyberRadar
+        </div>
+
+        <div class="header-right">
+            Scan • Detect • Secure
+        </div>
+
+    </header>
+
     <div class="main-container">
 
         <div class="scanner-card">
@@ -65,7 +77,7 @@
             <div id="apiScanner">
 
                 <input type="text" id="url" placeholder="Enter Website URL">
-
+                <div id="urlError" class="error-message"></div>
                 <button onclick="scanApi()">
                     Scan Headers
                 </button>
@@ -82,7 +94,7 @@
             <div id="swaggerScanner" style="display:none;">
 
                 <input type="text" id="swaggerUrl" placeholder="Enter Swagger/OpenAPI URL">
-
+                <div id="swaggerError" class="error-message"></div>
                 <button onclick="scanSwagger()">
                     Scan Swagger API
                 </button>
@@ -100,7 +112,7 @@
                 <textarea id="jwtToken" placeholder="Paste JWT Token Here" rows="6"
                     style="width:100%; margin-bottom:10px;">
                 </textarea>
-
+                <div id="jwtError" class="error-message"></div>
                 <button onclick="scanJwt()">
 
                     Analyze JWT
@@ -113,12 +125,15 @@
             <div id="owaspScanner" style="display:none;">
 
                 <input type="text" id="owaspUrl" placeholder="Enter Website URL">
-
+                <div id="owaspError" class="error-message"></div>
                 <button onclick="scanOwasp()">
                     Scan OWASP
                 </button>
 
             </div>
+            <button onclick="resetScanner()" class="refresh-btn">
+                🔄 Reset Scanner
+            </button>
 
             <div id="loader" class="loader">
 
@@ -132,9 +147,20 @@
 
     </div>
 
-    <footer>
+    <footer class="footer">
 
-        Developed by Swamy Dandu
+        <p>🛡 CyberRadar v1.0</p>
+
+        <p>
+            Developed by
+            <span class="developer-name">
+                Swamy Dandu
+            </span>
+        </p>
+
+        <p class="footer-tagline">
+            Security Headers • JWT Analysis • Swagger Validation • OWASP Top 10
+        </p>
 
     </footer>
 
