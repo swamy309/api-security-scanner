@@ -1,96 +1,114 @@
 package com.example.apiscanner.model;
 
 public class OwaspScanResult {
-	
+
 	private String brokenAccessControl;
-    private String cryptographicFailures;
-    private String injectionRisk;
-    private String securityMisconfiguration;
-    private String vulnerableComponents;
-    private String identificationFailures;
-    private String softwareIntegrity;
-    private String securityLogging;
-    private String ssrfRisk;
-    private String overallRisk;
+	private String cryptographicFailures;
+	private String injectionRisk;
+	private String insecureDesign;
+	private String securityMisconfiguration;
+	private String vulnerableComponents;
+	private String identificationFailures;
+	private String softwareIntegrityFailures;
+	private String loggingFailures;
+	private String ssrfRisk;
+	private String overallRisk;
+	private int riskScore;
 
-    public String getBrokenAccessControl() {
-        return brokenAccessControl;
-    }
+	public String getBrokenAccessControl() {
+		return brokenAccessControl;
+	}
 
-    public void setBrokenAccessControl(String brokenAccessControl) {
-        this.brokenAccessControl = brokenAccessControl;
-    }
+	public void setBrokenAccessControl(String brokenAccessControl) {
+		this.brokenAccessControl = brokenAccessControl;
+	}
 
-    public String getCryptographicFailures() {
-        return cryptographicFailures;
-    }
+	public String getCryptographicFailures() {
+		return cryptographicFailures;
+	}
 
-    public void setCryptographicFailures(String cryptographicFailures) {
-        this.cryptographicFailures = cryptographicFailures;
-    }
+	public void setCryptographicFailures(String cryptographicFailures) {
+		this.cryptographicFailures = cryptographicFailures;
+	}
 
-    public String getInjectionRisk() {
-        return injectionRisk;
-    }
+	public String getInjectionRisk() {
+		return injectionRisk;
+	}
 
-    public void setInjectionRisk(String injectionRisk) {
-        this.injectionRisk = injectionRisk;
-    }
+	public void setInjectionRisk(String injectionRisk) {
+		this.injectionRisk = injectionRisk;
+	}
 
-    public String getSecurityMisconfiguration() {
-        return securityMisconfiguration;
-    }
+	public String getInsecureDesign() {
+		return insecureDesign;
+	}
 
-    public void setSecurityMisconfiguration(String securityMisconfiguration) {
-        this.securityMisconfiguration = securityMisconfiguration;
-    }
+	public void setInsecureDesign(String insecureDesign) {
+		this.insecureDesign = insecureDesign;
+	}
 
-    public String getVulnerableComponents() {
-        return vulnerableComponents;
-    }
+	public String getSecurityMisconfiguration() {
+		return securityMisconfiguration;
+	}
 
-    public void setVulnerableComponents(String vulnerableComponents) {
-        this.vulnerableComponents = vulnerableComponents;
-    }
+	public void setSecurityMisconfiguration(String securityMisconfiguration) {
+		this.securityMisconfiguration = securityMisconfiguration;
+	}
 
-    public String getIdentificationFailures() {
-        return identificationFailures;
-    }
+	public String getVulnerableComponents() {
+		return vulnerableComponents;
+	}
 
-    public void setIdentificationFailures(String identificationFailures) {
-        this.identificationFailures = identificationFailures;
-    }
+	public void setVulnerableComponents(String vulnerableComponents) {
+		this.vulnerableComponents = vulnerableComponents;
+	}
 
-    public String getSoftwareIntegrity() {
-        return softwareIntegrity;
-    }
+	public String getIdentificationFailures() {
+		return identificationFailures;
+	}
 
-    public void setSoftwareIntegrity(String softwareIntegrity) {
-        this.softwareIntegrity = softwareIntegrity;
-    }
+	public void setIdentificationFailures(String identificationFailures) {
+		this.identificationFailures = identificationFailures;
+	}
 
-    public String getSecurityLogging() {
-        return securityLogging;
-    }
+	public String getSoftwareIntegrityFailures() {
+		return softwareIntegrityFailures;
+	}
 
-    public void setSecurityLogging(String securityLogging) {
-        this.securityLogging = securityLogging;
-    }
+	public void setSoftwareIntegrityFailures(String softwareIntegrityFailures) {
+		this.softwareIntegrityFailures = softwareIntegrityFailures;
+	}
 
-    public String getSsrfRisk() {
-        return ssrfRisk;
-    }
+	public String getLoggingFailures() {
+		return loggingFailures;
+	}
 
-    public void setSsrfRisk(String ssrfRisk) {
-        this.ssrfRisk = ssrfRisk;
-    }
+	public void setLoggingFailures(String loggingFailures) {
+		this.loggingFailures = loggingFailures;
+	}
 
-    public String getOverallRisk() {
-        return overallRisk;
-    }
+	public String getSsrfRisk() {
+		return ssrfRisk;
+	}
 
-    public void setOverallRisk(String overallRisk) {
-        this.overallRisk = overallRisk;
-    }
+	public void setSsrfRisk(String ssrfRisk) {
+		this.ssrfRisk = ssrfRisk;
+	}
+
+	public String getOverallRisk() {
+		return overallRisk;
+	}
+
+	public void setOverallRisk(String overallRisk) {
+		this.overallRisk = overallRisk;
+	}
+
+	public int getRiskScore() {
+		return riskScore;
+	}
+
+	public void setRiskScore(int riskScore) {
+		this.riskScore = riskScore;
+	}
 
 }

@@ -381,6 +381,40 @@ async function scanOwasp() {
         <b>Overall Risk:</b>
         ${data.overallRisk}
         </div>
+        <div class="result-card">
+<b>Insecure Design:</b>
+${data.insecureDesign}
+</div>
+
+<div class="result-card">
+<b>Vulnerable Components:</b>
+${data.vulnerableComponents}
+</div>
+
+<div class="result-card">
+<b>Identification Failures:</b>
+${data.identificationFailures}
+</div>
+
+<div class="result-card">
+<b>Software Integrity Failures:</b>
+${data.softwareIntegrityFailures}
+</div>
+
+<div class="result-card">
+<b>Logging Failures:</b>
+${data.loggingFailures}
+</div>
+
+<div class="result-card">
+<b>SSRF Risk:</b>
+${data.ssrfRisk}
+</div>
+
+<div class="result-card">
+<b>Risk Score:</b>
+${data.riskScore}/100
+</div>
 
         `;
     }
