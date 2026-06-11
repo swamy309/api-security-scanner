@@ -1,7 +1,6 @@
 package com.example.apiscanner.model;
 
-
-public class ScanResult {
+public class APIScanResult {
 
 	private String url;
 	private String https;
@@ -111,5 +110,4 @@ public class ScanResult {
 	public void setServer(String server) {
 		this.server = server;
 	}
-
 }

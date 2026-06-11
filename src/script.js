@@ -40,7 +40,7 @@ async function scanApi() {
 
         const response =
             await fetch(
-                `http://localhost:9090/scan?url=${url}`
+                `http://localhost:9090/api-scan?url=${url}`
             );
 
         const data =
@@ -303,6 +303,8 @@ async function scanJwt() {
                 <p><b>Token Type:</b> ${data.tokenType ?? "N/A"}</p>
             </div>
         `;
+        document.getElementById("jwtPdfBtn").style.display =
+            "inline-block";
 
     } catch (error) {
         console.error(error);
@@ -314,119 +316,119 @@ async function scanJwt() {
 // funtion method for scanOwasp
 async function scanOwasp() {
 
-    const url =
-        document.getElementById("owaspUrl").value;
-
-    const resultDiv =
-        document.getElementById("result");
-    const errorDiv =
-        document.getElementById("owaspError");
+    const url = document.getElementById("owaspUrl").value;
+    const resultDiv = document.getElementById("result");
+    const errorDiv = document.getElementById("owaspError");
+    const loader = document.getElementById("loader");
 
     errorDiv.innerHTML = "";
 
-
     if (!url) {
 
-        errorDiv.innerHTML =
-            "Please enter Website URL";
-
-        document.getElementById("url").style.border =
+        errorDiv.innerHTML = "Please enter Website URL";
+        document.getElementById("owaspUrl").style.border =
             "2px solid #ef4444";
 
         return;
     }
 
-    // Validation passed
-    document.getElementById("url").style.border =
-        "1px solid #334155";
+    loader.style.display = "block";
 
-    document.getElementById("owaspUrl")
-        .style.border =
-        "1px solid #334155";
     try {
 
-        const response =
-            await fetch(
-                `http://localhost:9090/owasp-scan?url=${encodeURIComponent(url)}`
-            );
+        const response = await fetch(
+            `http://localhost:9090/owasp-scan?url=${encodeURIComponent(url)}`
+        );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         resultDiv.innerHTML = `
+            <h2>OWASP Top 10 Report</h2>
 
-        <h2>OWASP Top 10 Report</h2>
+            <div class="result-card">
+                <b>Broken Access Control:</b>
+                ${data.brokenAccessControl}
+            </div>
 
-        <div class="result-card">
-        <b>Broken Access Control:</b>
-        ${data.brokenAccessControl}
-        </div>
+            <div class="result-card">
+                <b>Cryptographic Failures:</b>
+                ${data.cryptographicFailures}
+            </div>
 
-        <div class="result-card">
-        <b>Cryptographic Failures:</b>
-        ${data.cryptographicFailures}
-        </div>
+            <div class="result-card">
+                <b>Injection Risk:</b>
+                ${data.injectionRisk}
+            </div>
 
-        <div class="result-card">
-        <b>Injection Risk:</b>
-        ${data.injectionRisk}
-        </div>
+            <div class="result-card">
+                <b>Security Misconfiguration:</b>
+                ${data.securityMisconfiguration}
+            </div>
 
-        <div class="result-card">
-        <b>Security Misconfiguration:</b>
-        ${data.securityMisconfiguration}
-        </div>
+            <div class="result-card">
+                <b>Overall Risk:</b>
+                ${data.overallRisk}
+            </div>
 
-        <div class="result-card">
-        <b>Overall Risk:</b>
-        ${data.overallRisk}
-        </div>
-        <div class="result-card">
-<b>Insecure Design:</b>
-${data.insecureDesign}
-</div>
+            <div class="result-card">
+                <b>Insecure Design:</b>
+                ${data.insecureDesign}
+            </div>
 
-<div class="result-card">
-<b>Vulnerable Components:</b>
-${data.vulnerableComponents}
-</div>
+            <div class="result-card">
+                <b>Vulnerable Components:</b>
+                ${data.vulnerableComponents}
+            </div>
 
-<div class="result-card">
-<b>Identification Failures:</b>
-${data.identificationFailures}
-</div>
+            <div class="result-card">
+                <b>Identification Failures:</b>
+                ${data.identificationFailures}
+            </div>
 
-<div class="result-card">
-<b>Software Integrity Failures:</b>
-${data.softwareIntegrityFailures}
-</div>
+            <div class="result-card">
+                <b>Software Integrity Failures:</b>
+                ${data.softwareIntegrityFailures}
+            </div>
 
-<div class="result-card">
-<b>Logging Failures:</b>
-${data.loggingFailures}
-</div>
+            <div class="result-card">
+                <b>Logging Failures:</b>
+                ${data.loggingFailures}
+            </div>
 
-<div class="result-card">
-<b>SSRF Risk:</b>
-${data.ssrfRisk}
-</div>
+            <div class="result-card">
+                <b>SSRF Risk:</b>
+                ${data.ssrfRisk}
+            </div>
 
-<div class="result-card">
-<b>Risk Score:</b>
-${data.riskScore}/100
-</div>
-
+            <div class="result-card">
+                <b>Risk Score:</b>
+                ${data.riskScore}/100
+            </div>
         `;
-    }
-    catch (error) {
+
+        // SHOW PDF BUTTON
+        document.getElementById("owaspPdfBtn").style.display =
+            "inline-block";
+
+    } catch (error) {
 
         resultDiv.innerHTML =
             "Error: " + error.message;
+
+        document.getElementById("owaspPdfBtn").style.display =
+            "none";
+
+    } finally {
+
+        // ALWAYS HIDE LOADER
+        loader.style.display = "none";
     }
 }
 
 // downloadAPIPDF 
 function downloadApiPdf() {
+
+    console.log("API PDF Clicked");
 
     const url =
         document.getElementById("url").value;
@@ -439,13 +441,57 @@ function downloadApiPdf() {
     }
 
     window.open(
-        `http://localhost:9090/download-pdf?url=${encodeURIComponent(url)}`,
+        `http://localhost:9090/download-api-pdf?url=${encodeURIComponent(url)}`,
+        "_blank"
+    );
+}
+
+//downloadJwtPdf
+
+function downloadJWTPdf() {
+
+    console.log("JWT PDF Clicked");
+
+    const token =
+        document.getElementById("jwtToken").value;
+
+    if (!token) {
+
+        alert("Please enter JWT Token");
+
+        return;
+    }
+
+    window.open(
+        `http://localhost:9090/download-jwt-pdf?token=${encodeURIComponent(token)}`,
+        "_blank"
+    );
+}
+//downloadOwaspPdf
+
+function downloadOWASPPdf() {
+
+    console.log("OWASP PDF Clicked");
+
+    const url =
+        document.getElementById("owaspUrl").value;
+
+    if (!url) {
+
+        alert("Please enter Website URL");
+        return;
+    }
+
+    window.open(
+        `http://localhost:9090/download-owasp-pdf?url=${encodeURIComponent(url)}`,
         "_blank"
     );
 }
 
 //  downloadSwaggerPdf
 function downloadSwaggerPdf() {
+
+    console.log("SWAGGER PDF Clicked");
 
     const url =
         document.getElementById("swaggerUrl").value;
@@ -543,6 +589,8 @@ function resetScanner() {
 
     document.getElementById("apiPdfBtn").style.display = "none";
     document.getElementById("swaggerPdfBtn").style.display = "none";
+    document.getElementById("jwtPdfBtn").style.display = "none";
+    document.getElementById("owaspPdfBtn").style.display = "none";
 
     document.getElementById("urlError").innerHTML = "";
     document.getElementById("swaggerError").innerHTML = "";

@@ -1,18 +1,18 @@
 package com.example.apiscanner.service;
 
-import org.springframework.stereotype.Service;
-import com.example.apiscanner.model.ScanResult;
+import com.example.apiscanner.model.APIScanResult;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import org.springframework.stereotype.Service;
 
 @Service
-public class ScanService {
+public class ApiScanService {
+	
+	public APIScanResult scanApi(String url) {
 
-	public ScanResult scanApi(String url) {
-
-		ScanResult result = new ScanResult();
+		APIScanResult result = new APIScanResult();
 
 		try {
 

@@ -84,7 +84,7 @@
 
                 <button id="apiPdfBtn" onclick="downloadApiPdf()" style="display:none;">
 
-                    Download PDF
+                    Download Header Security Report
 
                 </button>
 
@@ -101,7 +101,7 @@
 
                 <button id="swaggerPdfBtn" onclick="downloadSwaggerPdf()" style="display:none;">
 
-                    Download PDF
+                    Download Swagger Security Report
 
                 </button>
 
@@ -119,6 +119,12 @@
 
                 </button>
 
+                <button id="jwtPdfBtn" onclick="downloadJWTPdf()" style="display:none;">
+
+                    Download JWT Analysis Report
+
+                </button>
+
             </div>
 
             <!-- owaspScanner -->
@@ -128,6 +134,9 @@
                 <div id="owaspError" class="error-message"></div>
                 <button onclick="scanOwasp()">
                     Scan OWASP
+                </button>
+                <button id="owaspPdfBtn" onclick="downloadOWASPPdf()" style="display:none;">
+                    Download OWASP Top 10 Report
                 </button>
 
             </div>
